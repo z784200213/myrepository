@@ -18,10 +18,10 @@ public class ReptileApplicationTests {
     StringEncryptor encryptor;
     @Test
     public void contextLoads() throws NoSuchFieldException, IllegalAccessException {
-        String username = encryptor.encrypt("root");
+        String username = encryptor.encrypt("********");
         System.out.println(username);
         //加密123
-        String password = encryptor.encrypt("123456");
+        String password = encryptor.encrypt("***********");
 
         System.out.println(password);
         String pwd=encryptor.decrypt(password);
