@@ -1,0 +1,5 @@
+2018-09-29 10:19:34 -java.io.FileNotFoundException: URL [ftp://172.17.13.36:2121/1.txt] cannot be resolved to absolute file path because it does not reside in the file system: ftp://172.17.13.36:2121/1.txt
+2018-09-29 10:28:22 -java.io.FileNotFoundException: ftp:\172.17.13.36:2121\1.txt (文件名、目录名或卷标语法不正确。)
+2018-09-29 14:10:41 -sun.net.ftp.FtpLoginException: Invalid username/password
+2018-09-29 14:19:23 -sun.net.ftp.FtpLoginException: Invalid username/password
+2018-09-29 14:21:53 -sun.net.ftp.FtpLoginException: Invalid username/password

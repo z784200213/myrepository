@@ -1,0 +1,14 @@
+2018-09-26 15:30:41.697 ERROR 12012 --- [http-nio-9096-exec-1] c.a.exception.ExceptionHandle            : org.springframework.dao.DuplicateKeyException: 
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '1' for key 'PRIMARY'
+### The error may involve com.annotationtest.dao.IUserInfoDao.Add-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO db_school.user (id, nick_name, address_id)VALUES(?,?, ?)
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '1' for key 'PRIMARY'
+; ]; Duplicate entry '1' for key 'PRIMARY'; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '1' for key 'PRIMARY'
+2018-09-26 15:32:20.795 ERROR 10504 --- [http-nio-9096-exec-1] c.a.exception.ExceptionHandle            : org.springframework.dao.DuplicateKeyException: 
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '1' for key 'PRIMARY'
+### The error may involve com.annotationtest.dao.IUserInfoDao.Add-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO db_school.user (id, nick_name, address_id)VALUES(?,?, ?)
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '1' for key 'PRIMARY'
+; ]; Duplicate entry '1' for key 'PRIMARY'; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '1' for key 'PRIMARY'

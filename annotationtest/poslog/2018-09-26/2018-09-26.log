@@ -1,0 +1,7 @@
+2018-09-26 15:36:07 -org.springframework.dao.DuplicateKeyException: 
+### Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '1' for key 'PRIMARY'
+### The error may involve com.annotationtest.dao.IUserInfoDao.Add-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO db_school.user (id, nick_name, address_id)VALUES(?,?, ?)
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '1' for key 'PRIMARY'
+; ]; Duplicate entry '1' for key 'PRIMARY'; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '1' for key 'PRIMARY'
