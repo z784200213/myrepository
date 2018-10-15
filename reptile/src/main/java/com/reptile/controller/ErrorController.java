@@ -1,6 +1,7 @@
 package com.reptile.controller;
 
 import com.reptile.common.DataResult;
+import com.reptile.config.DataSourceConfiguration;
 import com.reptile.entity.UserInfor;
 import com.reptile.result.ResponseResult;
 import com.reptile.service.IUserInforService;
@@ -22,7 +23,8 @@ public class ErrorController extends BaseController {
 
     @Autowired
     IUserInforService userInforService;
-
+    @Autowired
+    DataSourceConfiguration configuration;
     @RequestMapping("/auth")
     public ResponseResult NoAuth(HttpSession session, HttpServletResponse response,
                                  HttpServletRequest request) {
