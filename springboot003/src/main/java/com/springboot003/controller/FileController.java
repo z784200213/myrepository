@@ -33,14 +33,10 @@ public class FileController {
     }*/
 
 
-    @PostMapping("/upload1")
+    @PostMapping("/upload")
     @ResponseBody
-    public Map<String, String> upload1(@RequestParam("file") MultipartFile file)
+    public Map<String, String> upload(@RequestParam("file") MultipartFile file)
             throws IOException {
-        log.info("[文件类型] - [{}]", file.getContentType());
-        log.info("[文件名称] - [{}]", file.getOriginalFilename());
-        log.info("[文件大小] - [{}]", file.getSize());
-        // TODO 将文件写入到指定目录（具体开发中有可能是将文件写入到云存储/或者指定目录通过 Nginx 进行 gzip 压缩和反向代理，此处只是为了演示故将地址写成本地电脑指定目录）
         file.transferTo(new File("D:\\java\\git\\gitreponstory\\file\\" + file.getOriginalFilename()));
         Map<String, String> result = new HashMap<>(16);
         result.put("contentType", file.getContentType());
@@ -49,15 +45,14 @@ public class FileController {
         return result;
     }
 
-    @PostMapping("/upload2")
+    @PostMapping("/uploads")
     @ResponseBody
-    public List<Map<String, String>> upload2(@RequestParam("file") MultipartFile[] files) throws IOException {
+    public List<Map<String, String>> uploads(@RequestParam("file") MultipartFile[] files) throws IOException {
         if (files == null || files.length == 0) {
             return null;
         }
         List<Map<String, String>> results = new ArrayList<>();
         for (MultipartFile file : files) {
-            // TODO Spring Mvc 提供的写入方式
             file.transferTo(new File("D:\\java\\git\\gitreponstory\\file\\" + file.getOriginalFilename()));
             Map<String, String> map = new HashMap<>(16);
             map.put("contentType", file.getContentType());
@@ -68,12 +63,12 @@ public class FileController {
         return results;
     }
 
-    @PostMapping("/upload3")
+    @PostMapping("/uploadBase64")
     @ResponseBody
-    public void upload2(String base64) throws IOException {
-        // TODO BASE64 方式的 格式和名字需要自己控制（如 png 图片编码后前缀就会是 data:image/png;base64,）
+    public void uploadBase64(String base64) throws IOException {
+
         final File tempFile = new File("D:\\java\\git\\gitreponstory\\file\\test.jpg");
-        // TODO 防止有的传了 data:image/png;base64, 有的没传的情况
+
         String[] d = base64.split("base64,");
         final byte[] bytes = Base64Utils.decodeFromString(d.length > 1 ? d[1] : d[0]);
         FileCopyUtils.copy(bytes, tempFile);
