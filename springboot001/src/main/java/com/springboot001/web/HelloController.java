@@ -42,9 +42,9 @@ public class HelloController {
         //建立邮件消息
         SimpleMailMessage mainMessage = new SimpleMailMessage();
         //发送者
-        mainMessage.setFrom("13655187048@163.com");
+        mainMessage.setFrom(****);
         //接收者
-        mainMessage.setTo("784200213@qq.com");
+        mainMessage.setTo(****);
         //发送的标题
         mainMessage.setSubject("嗨喽");
         //发送的内容
