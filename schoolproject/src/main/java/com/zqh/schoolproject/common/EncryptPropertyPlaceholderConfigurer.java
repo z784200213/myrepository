@@ -2,8 +2,7 @@ package com.zqh.schoolproject.common;
 
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 
-public class EncryptPropertyPlaceholderConfigurer extends PropertyPlaceholderConfigurer
-{
+public class EncryptPropertyPlaceholderConfigurer extends PropertyPlaceholderConfigurer {
     //属性需与配置文件的KEY保持一直
     private String[] encryptPropNames = {"spring.datasource.username", "spring.datasource.password"};
 
@@ -20,6 +19,7 @@ public class EncryptPropertyPlaceholderConfigurer extends PropertyPlaceholderCon
         }
 
     }
+
     private boolean isEncryptProp(String propertyName) {
         for (String encryptName : encryptPropNames) {
             if (encryptName.equals(propertyName)) {

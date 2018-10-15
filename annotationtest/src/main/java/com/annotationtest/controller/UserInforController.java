@@ -32,109 +32,122 @@ import java.util.List;
 @RestController
 @RequestMapping("/aop2")
 public class UserInforController {
-  /*  @Value("classpath:static/data/test.json")
-    UserInfor userInfor;*/
+    /*  @Value("classpath:static/data/test.json")
+      UserInfor userInfor;*/
     @Autowired
     RedisUtil redisUtil;
     @Autowired
     RedisTool redisTool;
     @Autowired
     IUserInforService userInforService;
+
     @RequestMapping("/testAnnotation")
     @WebDesc(describe = "This is testAnnotation Controller testAnnotation")
-    public ResponseBean testAnnotation(String key){
-        ResponseBean responseBean=new ResponseBean();
-        Object object=null;
+    public ResponseBean testAnnotation(String key) {
+        ResponseBean responseBean = new ResponseBean();
+        Object object = null;
         object.toString();
-      //  responseBean.setSuccessResponse("测试");
+        //  responseBean.setSuccessResponse("测试");
         return responseBean;//"key="+key;
     }
+
     @RequestMapping("/testAnnotation1")
-    public  String WithoutAnnotation(){
-        return  "没有使用注解";
+    public String WithoutAnnotation() {
+        return "没有使用注解";
     }
+
     @RequestMapping("/returnboolean")
     @WebDesc()
-    public  boolean ReturnBoolean(){
-        return  false;
+    public boolean ReturnBoolean() {
+        return false;
     }
-    @Transactional(rollbackFor=Exception.class)
+
+    @Transactional(rollbackFor = Exception.class)
     @RequestMapping("/returnlist")
     @TestAnno()
-    public DataResult<List<String>> ReturnList(){
+    public DataResult<List<String>> ReturnList() {
         return getListDataResult();
 
     }
 
     private DataResult<List<String>> getListDataResult() {
-        List<String>list=new ArrayList<String>();
+        List<String> list = new ArrayList<String>();
         list.add("1");
         list.add("测试");
-        UserInfor u1=new UserInfor();
+        UserInfor u1 = new UserInfor();
         u1.setId(1);
         u1.setNick_name("张三");
         u1.setAddress_id(2);
         userInforService.Add(u1);
-        UserInfor u2=new UserInfor();
+        UserInfor u2 = new UserInfor();
         u2.setId(1);
         u1.setNick_name("张三1");
         u1.setAddress_id(2);
         userInforService.Add(u2);
-        return new  DataResult<List<String>>(list);
+        return new DataResult<List<String>>(list);
     }
 
     @Transactional
     @RequestMapping("/returnlist1")
     @AnnoTest()
-    public DataResult<List<String>> ReturnList1(){
+    public DataResult<List<String>> ReturnList1() {
         return getListDataResult();
 
     }
+
     @RequestMapping("/redisset")
-    public List<String>RedisSet(){
-        List<String>str=new ArrayList<String>();
+    public List<String> RedisSet() {
+        List<String> str = new ArrayList<String>();
         str.add("测试1");
         str.add("测试2");
-        Object obj= JSON.toJSON(str).toString();
-        redisTool.set("key",str);
+        Object obj = JSON.toJSON(str).toString();
+        redisTool.set("key", str);
         return str;
     }
+
     @RequestMapping("/redisget")
-    public Object RedisGet(){
-        List<UserInfor>  list=  JsonData.jsonDataString();
-        Object str=  redisTool.get("key");
+    public Object RedisGet() {
+        List<UserInfor> list = JsonData.jsonDataString();
+        Object str = redisTool.get("key");
         return str;
     }
+
     @RequestMapping("/getlist/id={id}")
     @Cacheable(key = "id")
-    public  List<String>Getlist(String id){
-        List<String>list=new ArrayList<String>();
+    public List<String> Getlist(String id) {
+        List<String> list = new ArrayList<String>();
         list.add("人");
         System.out.println("没有调用缓存");
-        return  list;
+        return list;
     }
+
     @RequestMapping("/query/id={id}")
-    public UserInfor Query(@PathVariable int id){
-     UserInfor userInfor=   userInforService.Query(id);
-     System.out.println("调用缓存");
+    public UserInfor Query(@PathVariable int id) {
+        UserInfor userInfor = userInforService.Query(id);
+        System.out.println("调用缓存");
         return userInfor;
     }
+
     @RequestMapping("/person")
-    public String toPerson(String name,int age){
-        System.out.println(name+" "+age);
+    public String toPerson(String name, int age) {
+        System.out.println(name + " " + age);
         return "hello";
     }
+
     @Autowired
     FtpUtil ftpUtil;
-@RequestMapping("/ftp")
-    public void  FtpTest() throws IOException {
-    ftpUtil.CheckLogin();
+
+    @RequestMapping("/ftp")
+    public void FtpTest() throws IOException {
+        ftpUtil.CheckLogin();
     }
+
     @Autowired
     FtpSocket ftpSocket;
+
     @RequestMapping("/ftpsocket")
-    public  void  ftpSocket() throws IOException {
-           // ftpSocket.connect("172.17.13.36",2121,"ftpuser","1");
-            ftpSocket.userUrl();
+    public void ftpSocket() throws IOException {
+        // ftpSocket.connect("172.17.13.36",2121,"ftpuser","1");
+        ftpSocket.userUrl();
     }
 }

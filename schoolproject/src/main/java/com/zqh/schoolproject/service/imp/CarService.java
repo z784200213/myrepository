@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 public class CarService implements ICarService {
     @Autowired
     CarDao carDao;
+
     @Override
     public Car Query(int id) {
         return carDao.Query(id);

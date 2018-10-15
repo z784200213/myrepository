@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserInforService implements IUserInforService
-{
+public class UserInforService implements IUserInforService {
     @Autowired
     UserInforDao userInforDao;
+
     @Override
     public Address Query(int id) {
         return userInforDao.Query(id);

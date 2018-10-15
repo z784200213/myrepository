@@ -41,7 +41,7 @@ public class SessionFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
         HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
         String url = httpRequest.getRequestURI().substring(httpRequest.getContextPath().length());
-        String token=  httpRequest.getHeader("token");
+        String token = httpRequest.getHeader("token");
         /*Cache cache=    CacheManager.getCacheInfo("token");
         if(token!=null){
             boolean bool=isAuth(token);
@@ -49,10 +49,10 @@ public class SessionFilter implements Filter {
         if (url.startsWith("/") && url.length() > 1) {
             url = url.substring(1);
         }
-        if (isInclude(url)){
+        if (isInclude(url)) {
             chain.doFilter(httpRequest, httpResponse);
-            return ;
-           // httpResponse.sendRedirect("/login.html");
+            return;
+            // httpResponse.sendRedirect("/login.html");
         } else {
             chain.doFilter(httpRequest, httpResponse);
             return;
@@ -89,6 +89,7 @@ public class SessionFilter implements Filter {
 
     /**
      * 是否需要过滤
+     *
      * @param url
      * @return
      */
@@ -101,26 +102,27 @@ public class SessionFilter implements Filter {
         }
         return false;
     }
-    private  boolean isAuth(String token){
-        if(token==null){
+
+    private boolean isAuth(String token) {
+        if (token == null) {
             return false;
         }
-        boolean bool=   CacheManager.getSimpleFlag("token");
-        if(bool){
-            Cache cache=    CacheManager.getCacheInfo("token");
-           Object obj=  cache.getValue();
-           if(obj.toString().equals(token)){
-               return  true;
-           }
-           //CacheManager.clearOnly("token");
-           return  false;
+        boolean bool = CacheManager.getSimpleFlag("token");
+        if (bool) {
+            Cache cache = CacheManager.getCacheInfo("token");
+            Object obj = cache.getValue();
+            if (obj.toString().equals(token)) {
+                return true;
+            }
+            //CacheManager.clearOnly("token");
+            return false;
             /*if(cache!=null){
 
             } else {
                 CacheManager.clearOnly("token");
             }*/
         }
-        return  false;
+        return false;
     }
 
 }

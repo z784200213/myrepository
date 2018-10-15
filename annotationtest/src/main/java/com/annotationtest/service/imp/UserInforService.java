@@ -11,10 +11,12 @@ import org.springframework.stereotype.Service;
 public class UserInforService implements IUserInforService {
     @Autowired
     IUserInfoDao userInfoDao;
+
     @Override
     public int Add(UserInfor userInfor) {
-      return   userInfoDao.Add(userInfor);
+        return userInfoDao.Add(userInfor);
     }
+
     @Cacheable(key = "id")
     @Override
     public UserInfor Query(int id) {

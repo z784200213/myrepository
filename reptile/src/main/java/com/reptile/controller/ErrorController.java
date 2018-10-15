@@ -16,14 +16,16 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/error")
 public class ErrorController extends BaseController {
     @RequestMapping("/error")
-    public ResponseResult error(){
+    public ResponseResult error() {
         return super.error();
     }
+
     @Autowired
     IUserInforService userInforService;
+
     @RequestMapping("/auth")
     public ResponseResult NoAuth(HttpSession session, HttpServletResponse response,
-                            HttpServletRequest request){
+                                 HttpServletRequest request) {
 
         return super.noAuth();
     }

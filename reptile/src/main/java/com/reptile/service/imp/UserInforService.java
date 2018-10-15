@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 public class UserInforService implements IUserInforService {
     @Autowired
     IUserInforDao userInforDao;
+
     @Override
     public UserInfor query(int id) {
         return userInforDao.query(id);

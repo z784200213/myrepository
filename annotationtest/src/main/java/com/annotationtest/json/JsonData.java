@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JsonData {
-    public static List<UserInfor> jsonDataString(){
+    public static List<UserInfor> jsonDataString() {
         List<UserInfor> cmpNos = new ArrayList<UserInfor>();
         try {
             String jsonData = FileUtils.readFileToString(ResourceUtils.

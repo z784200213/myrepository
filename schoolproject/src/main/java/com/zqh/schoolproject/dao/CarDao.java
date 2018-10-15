@@ -10,6 +10,7 @@ import java.util.List;
 public interface CarDao {
     @Select("select * from car where id=#{id}")
     Car Query(int id);
+
     @Select("select * from car where user_id=#{id}")
-    List<Car>QueryByUserid(int id);
+    List<Car> QueryByUserid(int id);
 }

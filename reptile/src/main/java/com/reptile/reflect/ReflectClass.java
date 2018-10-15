@@ -5,17 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-public class ReflectClass<T>  {
+public class ReflectClass<T> {
     @SuppressWarnings("unchecked")
-    public   List<Class<T>> getAllSubclassOfTestInterface(String interfaceName) {
+    public List<Class<T>> getAllSubclassOfTestInterface(String interfaceName) {
         Field field = null;
         Vector v = null;
         List<Class<T>> allSubclass = new ArrayList<Class<T>>();
-                ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         Class<?> classOfClassLoader = classLoader.getClass();
         try {
 
-            Class<T>Tes= (Class<T>) Class.forName(interfaceName);//"com.xxx.xxx.xxx.TestInterface"
+            Class<T> Tes = (Class<T>) Class.forName(interfaceName);//"com.xxx.xxx.xxx.TestInterface"
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(
                     "无法获取到TestInterface的Class对象!查看包名,路径是否正确");

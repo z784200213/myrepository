@@ -17,6 +17,7 @@ public class UserInforController {
     IUserInforService userInforService;
     @Autowired
     MysqlConfig mySQLConfig;
+
     //注入StringEncryptor
    /* @Autowired
     StringEncryptor encryptor;*/

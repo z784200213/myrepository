@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import java.sql.SQLException;
+
 @Aspect
 @Component
 public class AnnoTestaspect {
@@ -23,17 +24,17 @@ public class AnnoTestaspect {
      * 用注解
      */
     @Pointcut("@annotation(com.annotationtest.common.AnnoTest)")
-    public void executeAnnotation(){
+    public void executeAnnotation() {
     }
 
     @Before("executeAnnotation()")
-    public void beforeAdviceAnnotation(){
+    public void beforeAdviceAnnotation() {
         System.out.println("- - - - - 前置通知 annotation - - - - -");
     }
 
     @Around("@annotation(annoTest)")
-    public Object aroundAnnotation(ProceedingJoinPoint proceedingJoinPoint, AnnoTest annoTest) throws Throwable  {
-            Object obj=     proceedingJoinPoint.proceed();
-            return obj;
+    public Object aroundAnnotation(ProceedingJoinPoint proceedingJoinPoint, AnnoTest annoTest) throws Throwable {
+        Object obj = proceedingJoinPoint.proceed();
+        return obj;
     }
 }

@@ -20,15 +20,15 @@ public class UserInfoController {
     @RequestMapping("/Query/id={id}")
     public Address Query(@PathVariable int id) {
         try {
-            Object object=null;
+            Object object = null;
             object.toString();
             return userInforService.Query(id);
-        }catch (Exception ex){
-            String msg=ex.getMessage();
-            String msg1= ex.getLocalizedMessage();
-            StackTraceElement[] stackTraceElements=  ex.getStackTrace();
-           String msg2= ex.toString();
-            throw  new TGException(500,msg2);
+        } catch (Exception ex) {
+            String msg = ex.getMessage();
+            String msg1 = ex.getLocalizedMessage();
+            StackTraceElement[] stackTraceElements = ex.getStackTrace();
+            String msg2 = ex.toString();
+            throw new TGException(500, msg2);
         }
 
 

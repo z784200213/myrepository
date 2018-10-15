@@ -15,12 +15,14 @@ public class JsonUtil {
         s = objectMapper.writeValueAsString(object);
         return s;
     }
+
     public static <T> T convertString2Obj(String s, Class<T> clazz) throws IOException {
         T t = null;
         t = objectMapper.readValue(s, clazz);
         return t;
     }
-    public  static <T> T[]convertString2list(String s,Class<T[]>Class) throws  IOException{
+
+    public static <T> T[] convertString2list(String s, Class<T[]> Class) throws IOException {
         T[] result = objectMapper.readValue(s, Class);
         return result;
     }

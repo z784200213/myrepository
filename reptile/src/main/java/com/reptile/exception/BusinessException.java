@@ -1,5 +1,5 @@
 package com.reptile.exception;
 
-public class BusinessException extends  Exception {
+public class BusinessException extends Exception {
 
 }

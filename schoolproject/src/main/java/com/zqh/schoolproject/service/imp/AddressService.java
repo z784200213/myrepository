@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 public class AddressService implements IAddressService {
     @Autowired
     AddressDao addressDao;
+
     @Override
     public Address Query(int id) {
         return addressDao.Query(id);

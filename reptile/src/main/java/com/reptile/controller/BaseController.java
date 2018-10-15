@@ -6,20 +6,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class BaseController<T> {
-    private ResponseResult responseResult=new ResponseResult();
-    protected  ResponseResult success(T data){
+    private ResponseResult responseResult = new ResponseResult();
+
+    protected ResponseResult success(T data) {
         return responseResult.success(data);
     }
-    protected ResponseResult error(){
+
+    protected ResponseResult error() {
         return responseResult.error();
     }
-    protected ResponseResult exception(T data){
+
+    protected ResponseResult exception(T data) {
         return responseResult.exception(data);
     }
-    protected ResponseResult fail(T data){
+
+    protected ResponseResult fail(T data) {
         return responseResult.fail(data);
     }
-    protected ResponseResult noAuth(){
-        return  responseResult.noAuth();
+
+    protected ResponseResult noAuth() {
+        return responseResult.noAuth();
     }
 }

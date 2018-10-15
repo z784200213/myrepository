@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @ControllerAdvice
 public class ExceptionHandle {
-    private final static Logger logger= LoggerFactory.getLogger(ExceptionHandle.class);
+    private final static Logger logger = LoggerFactory.getLogger(ExceptionHandle.class);
+
     @ResponseBody
     @ExceptionHandler(value = Exception.class)
-    public String handle(Exception e){
+    public String handle(Exception e) {
         logger.error(e.toString());
-       return  e.toString();
+        return e.toString();
     }
 }

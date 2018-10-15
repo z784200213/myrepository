@@ -1,7 +1,7 @@
 package com.reptile.entity;
 
 public class UserInfor {
-    public   int id;
+    public int id;
 
     public int getId() {
         return id;
@@ -27,6 +27,6 @@ public class UserInfor {
         this.age = age;
     }
 
-    public   String name;
-    public  int age;
+    public String name;
+    public int age;
 }

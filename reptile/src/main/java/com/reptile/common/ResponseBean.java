@@ -5,69 +5,72 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ResponseBean implements Serializable {
-    private String type ;
+    private String type;
 
-    private int code ;
+    private int code;
 
-    private String message ;
+    private String message;
 
-    private Map<String,Object> data = new HashMap<String, Object>();
+    private Map<String, Object> data = new HashMap<String, Object>();
 
     /**
      * 自定义返回
+     *
      * @param type
      * @param code
      * @param message
      * @return
      */
-    public ResponseBean setResponse(String type, int code, String message){
+    public ResponseBean setResponse(String type, int code, String message) {
         this.type = type;
         this.code = code;
         this.message = message;
         return this;
     }
 
-    public ResponseBean setSuccessResponse(String message){
-        this.type = ResponseBeanType.SUCCESS ;
-        this.code = ResponseBeanCode.SUCCESS ;
-        this.message = message ;
+    public ResponseBean setSuccessResponse(String message) {
+        this.type = ResponseBeanType.SUCCESS;
+        this.code = ResponseBeanCode.SUCCESS;
+        this.message = message;
         return this;
     }
 
-    public ResponseBean setErrorResponse(String message){
-        this.type = ResponseBeanType.ERROR ;
-        this.code = ResponseBeanCode.ERROR ;
-        this.message = message ;
+    public ResponseBean setErrorResponse(String message) {
+        this.type = ResponseBeanType.ERROR;
+        this.code = ResponseBeanCode.ERROR;
+        this.message = message;
         return this;
     }
 
-    public ResponseBean setExceptionResponse(String message){
-        this.type = ResponseBeanType.ERROR ;
-        this.code = ResponseBeanCode.ERROR ;
-        this.message = message ;
+    public ResponseBean setExceptionResponse(String message) {
+        this.type = ResponseBeanType.ERROR;
+        this.code = ResponseBeanCode.ERROR;
+        this.message = message;
         return this;
     }
 
     public ResponseBean setWarnResponse(String message) {
-        this.type = ResponseBeanType.WARN ;
-        this.code = ResponseBeanCode.WARN ;
-        this.message = message ;
-        return this;
-    }
-    public ResponseBean setNoLoginResponse(String message){
-        this.type = ResponseBeanType.ERROR ;
-        this.code = ResponseBeanCode.NO_LOGIN ;
-        this.message = message ;
-        return this;
-    }
-    public ResponseBean setNoPowerResponse(String message){
-        this.type = ResponseBeanType.ERROR ;
-        this.code = ResponseBeanCode.NO_POWER ;
-        this.message = message ;
+        this.type = ResponseBeanType.WARN;
+        this.code = ResponseBeanCode.WARN;
+        this.message = message;
         return this;
     }
 
-    public Object getData(String key){
+    public ResponseBean setNoLoginResponse(String message) {
+        this.type = ResponseBeanType.ERROR;
+        this.code = ResponseBeanCode.NO_LOGIN;
+        this.message = message;
+        return this;
+    }
+
+    public ResponseBean setNoPowerResponse(String message) {
+        this.type = ResponseBeanType.ERROR;
+        this.code = ResponseBeanCode.NO_POWER;
+        this.message = message;
+        return this;
+    }
+
+    public Object getData(String key) {
         return this.data.get(key);
     }
 
@@ -103,12 +106,12 @@ public class ResponseBean implements Serializable {
         this.data = data;
     }
 
-    public void setData(String key,Object obj){
-        this.data.put(key,obj);
+    public void setData(String key, Object obj) {
+        this.data.put(key, obj);
     }
 
-    public void addData(String key,Object obj){
-        this.data.put(key,obj);
+    public void addData(String key, Object obj) {
+        this.data.put(key, obj);
     }
 
 

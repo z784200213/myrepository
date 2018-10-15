@@ -1,7 +1,7 @@
 package com.demo.exception;
 
 public class TGException extends RuntimeException {
-    private  Integer code;
+    private Integer code;
 
     @Override
     public String getMessage() {
@@ -14,14 +14,16 @@ public class TGException extends RuntimeException {
 
     private String message;
 
-    public TGException(ResultEnum resultEnum){
+    public TGException(ResultEnum resultEnum) {
         super(resultEnum.getMessage());
-        this.code=resultEnum.getCode();
+        this.code = resultEnum.getCode();
     }
-    public TGException(int code,String messge){
-        this.code=code;
-        message=messge;
+
+    public TGException(int code, String messge) {
+        this.code = code;
+        message = messge;
     }
+
     public Integer getCode() {
         return code;
     }

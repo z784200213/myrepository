@@ -49,7 +49,6 @@ public class DESUtil {
 
     /**
      * 对BASE64加密字符串进行解密
-     *
      */
     public static String getDecryptString(String str) {
         BASE64Decoder base64Decoder = new BASE64Decoder();

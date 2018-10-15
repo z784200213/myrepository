@@ -11,6 +11,7 @@ import java.net.SocketAddress;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.StringTokenizer;
+
 @Component
 public class FtpSocket {
 
@@ -34,7 +35,7 @@ public class FtpSocket {
             writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             String line = reader.readLine();
             System.out.println("step1 ----- " + line);
-            boolean connect= socket.isConnected();
+            boolean connect = socket.isConnected();
             //input user
           /*  sendCommand("USER " + user);
             line = reader.readLine();
@@ -44,10 +45,10 @@ public class FtpSocket {
             sendCommand("PASS " + pass);
             line = reader.readLine();
             System.out.println("step3 -----" + line);*/
-           //boolean connect= socket.isConnected();
+            //boolean connect= socket.isConnected();
 
             ReadFtpfile(socket.getInputStream());
-           System.out.println(connect);
+            System.out.println(connect);
 
 
         } catch (UnknownHostException ex) {
@@ -57,22 +58,24 @@ public class FtpSocket {
             System.out.println("IOException");
         }
     }
+
     /*@Autowired
     MyBean myBean;*/
     //读取ftp服务器指定文件内容并打印出来(编码格式为utf-8)
-    private  void ReadFtpfile(InputStream stream) throws IOException {
+    private void ReadFtpfile(InputStream stream) throws IOException {
         //ApplicationContext context=myBean.getContext();
         //Resource resource= context.getResource(filename);
-        InputStream inputStream=  stream;//resource.getInputStream();
+        InputStream inputStream = stream;//resource.getInputStream();
         InputStreamReader isr = new InputStreamReader(inputStream,
                 "UTF-8");
         BufferedReader read = new BufferedReader(isr);
         // BufferedReader br = new BufferedReader(new FileReader(localFile));
         String str;
-        while((str=read.readLine()) != null){
+        while ((str = read.readLine()) != null) {
             System.out.println(str);
         }
     }
+
     public synchronized void disconnect() throws IOException {
 
         try {
@@ -207,22 +210,23 @@ public class FtpSocket {
             throw e;
         }
     }
-public  void userUrl() throws IOException {
-    //使用URL读取网页内容
+
+    public void userUrl() throws IOException {
+        //使用URL读取网页内容
 //创建一个URL实例
-    URL url =new URL("ftp://172.17.13.36:2121/"+"1.txt");
-   // ftp://test:test@192.168.0.1:21/profile
-    InputStream is = url.openStream();//通过openStream方法获取资源的字节输入流
-    InputStreamReader isr =new InputStreamReader(is,"UTF-8");//将字节输入流转换为字符输入流,如果不指定编码，中文可能会出现乱码
-    BufferedReader br =new BufferedReader(isr);//为字符输入流添加缓冲，提高读取效率
-    String data = br.readLine();//读取数据
-    while(data!=null){
-        System.out.println(data);//输出数据
-        data = br.readLine();
+        URL url = new URL("ftp://172.17.13.36:2121/" + "1.txt");
+        // ftp://test:test@192.168.0.1:21/profile
+        InputStream is = url.openStream();//通过openStream方法获取资源的字节输入流
+        InputStreamReader isr = new InputStreamReader(is, "UTF-8");//将字节输入流转换为字符输入流,如果不指定编码，中文可能会出现乱码
+        BufferedReader br = new BufferedReader(isr);//为字符输入流添加缓冲，提高读取效率
+        String data = br.readLine();//读取数据
+        while (data != null) {
+            System.out.println(data);//输出数据
+            data = br.readLine();
+        }
+        br.close();
+        isr.close();
+        is.close();
     }
-    br.close();
-    isr.close();
-    is.close();
-}
 
 }

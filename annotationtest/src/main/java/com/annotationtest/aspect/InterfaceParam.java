@@ -1,4 +1,5 @@
 package com.annotationtest.aspect;
+
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -9,7 +10,6 @@ import java.lang.annotation.Target;
  * 自定义注解类(接口描述信息)
  *
  * @author DaiHaijiao
- *
  */
 @Documented
 @Target(ElementType.METHOD)

@@ -1,7 +1,7 @@
 package com.zqh.schoolproject.entity;
 
 public class Car {
-  public int  id;
+    public int id;
 
     public int getId() {
         return id;
@@ -36,6 +36,6 @@ public class Car {
     }
 
     public String color;
-   public String  NAME;
-   public int user_id;
+    public String NAME;
+    public int user_id;
 }

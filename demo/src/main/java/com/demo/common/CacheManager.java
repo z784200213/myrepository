@@ -11,39 +11,43 @@ public class CacheManager {
     private CacheManager() {
         super();
     }
+
     //获取布尔值的缓存
-    public static boolean getSimpleFlag(String key){
-        try{
-            if(cacheMap.get(key)!=null){
-                return  true;
+    public static boolean getSimpleFlag(String key) {
+        try {
+            if (cacheMap.get(key) != null) {
+                return true;
             }
-            return  false;
-           // return (Boolean) cacheMap.get(key);
-        }catch(NullPointerException e){
+            return false;
+            // return (Boolean) cacheMap.get(key);
+        } catch (NullPointerException e) {
             return false;
         }
     }
-    public static long getServerStartdt(String key){
+
+    public static long getServerStartdt(String key) {
         try {
-            return (Long)cacheMap.get(key);
+            return (Long) cacheMap.get(key);
         } catch (Exception ex) {
             return 0;
         }
     }
+
     //设置布尔值的缓存
-    public synchronized static boolean setSimpleFlag(String key,boolean flag){
+    public synchronized static boolean setSimpleFlag(String key, boolean flag) {
         if (flag && getSimpleFlag(key)) {//假如为真不允许被覆盖
             return false;
-        }else{
+        } else {
             cacheMap.put(key, flag);
             return true;
         }
     }
-    public synchronized static boolean setSimpleFlag(String key,long serverbegrundt){
+
+    public synchronized static boolean setSimpleFlag(String key, long serverbegrundt) {
         if (cacheMap.get(key) == null) {
-            cacheMap.put(key,serverbegrundt);
+            cacheMap.put(key, serverbegrundt);
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -104,12 +108,12 @@ public class CacheManager {
                 cache.setExpired(true);
             }
             return cache;
-        }else
+        } else
             return null;
     }
 
     //载入缓存信息
-    public static void putCacheInfo(String key, Cache obj, long dt,boolean expired) {
+    public static void putCacheInfo(String key, Cache obj, long dt, boolean expired) {
         Cache cache = new Cache();
         cache.setKey(key);
         cache.setTimeOut(dt + System.currentTimeMillis()); //设置多久后更新缓存
@@ -117,14 +121,15 @@ public class CacheManager {
         cache.setExpired(expired); //缓存默认载入时，终止状态为FALSE
         cacheMap.put(key, cache);
     }
+
     //重写载入缓存信息方法
-    public static void putCacheInfo(String key,Cache obj,long dt){
+    public static void putCacheInfo(String key, Cache obj, long dt) {
         Cache cache = new Cache();
         cache.setKey(key);
-        cache.setTimeOut(dt+System.currentTimeMillis());
+        cache.setTimeOut(dt + System.currentTimeMillis());
         cache.setValue(obj);
         cache.setExpired(false);
-        cacheMap.put(key,cache);
+        cacheMap.put(key, cache);
     }
 
     //判断缓存是否终止
@@ -134,7 +139,7 @@ public class CacheManager {
         }
         long nowDt = System.currentTimeMillis(); //系统当前的毫秒数
         long cacheDt = cache.getTimeOut(); //缓存内的过期毫秒数
-        if (cacheDt <= 0||cacheDt>nowDt) { //过期时间小于等于零时,或者过期时间大于当前时间时，则为FALSE
+        if (cacheDt <= 0 || cacheDt > nowDt) { //过期时间小于等于零时,或者过期时间大于当前时间时，则为FALSE
             return false;
         } else { //大于过期时间 即过期
             return true;
@@ -175,7 +180,8 @@ public class CacheManager {
                 java.util.Map.Entry entry = (java.util.Map.Entry) i.next();
                 a.add((String) entry.getKey());
             }
-        } catch (Exception ex) {} finally {
+        } catch (Exception ex) {
+        } finally {
             return a;
         }
     }
@@ -193,7 +199,8 @@ public class CacheManager {
                     a.add(key);
                 }
             }
-        } catch (Exception ex) {} finally {
+        } catch (Exception ex) {
+        } finally {
             return a;
         }
     }

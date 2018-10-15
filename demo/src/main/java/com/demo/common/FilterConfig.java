@@ -10,6 +10,7 @@ import javax.servlet.Filter;
 public class FilterConfig {
     /**
      * 配置过滤器
+     *
      * @return
      */
     @Bean
@@ -18,13 +19,14 @@ public class FilterConfig {
         registration.setFilter(sessionFilter());
         registration.addUrlPatterns("/*");
         registration.addInitParameter("paramName", "paramValue");
-       registration.setName("sessionFilter");
-      //registration.setFilter(new SessionFilter());
+        registration.setName("sessionFilter");
+        //registration.setFilter(new SessionFilter());
         return registration;
     }
 
     /**
      * 创建一个bean
+     *
      * @return
      */
     @Bean(name = "sessionFilter")

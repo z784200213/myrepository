@@ -9,13 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/address")
-public class AdressController extends  BaseController {
+public class AdressController extends BaseController {
     @Autowired
     IUserInforService userInforService;
-    @RequestMapping("/query")
-    public ResponseResult query(int id){
 
-        ResponseResult responseResult=super.success( userInforService.query(id));
+    @RequestMapping("/query")
+    public ResponseResult query(int id) {
+
+        ResponseResult responseResult = super.success(userInforService.query(id));
         return responseResult;
     }
 }

@@ -60,23 +60,25 @@ public class FtpUtil {
         }
         return success;
     }
+
     @Autowired
     MyBean myBean;
-    public    boolean CheckLogin() throws IOException {
+
+    public boolean CheckLogin() throws IOException {
         FTPClient ftp = new FTPClient();
         int reply;
         ftp.connect("172.17.13.36", 2121);// 连接FTP服务器
         ftp.login("ftpuser", "1");// 登录
         reply = ftp.getReplyCode();
-        List<String>list=new ArrayList<String>();
+        List<String> list = new ArrayList<String>();
         FTPFile[] fs = ftp.listFiles();
-        if(fs.length>0){
-            for (FTPFile ftpFile:fs){
-                if(ftpFile.getName().endsWith(".txt")){
+        if (fs.length > 0) {
+            for (FTPFile ftpFile : fs) {
+                if (ftpFile.getName().endsWith(".txt")) {
                     list.add(ftpFile.getName());
                     File localFile = new File("E:\\ftp\\dir" + "/" + ftpFile.getName());
-                    ApplicationContext context=myBean.getContext();
-                    String filename="ftp://172.17.13.36:2121/"+ftpFile.getName();
+                    ApplicationContext context = myBean.getContext();
+                    String filename = "ftp://172.17.13.36:2121/" + ftpFile.getName();
                     ReadFtpfile(filename);
                     OutputStream is = new FileOutputStream(localFile);
                     ftp.retrieveFile(ftpFile.getName(), is);
@@ -86,46 +88,49 @@ public class FtpUtil {
                 }
             }
         }
-        return  false;
+        return false;
     }
 
-    private  void ReadFile(File file) throws IOException {
+    private void ReadFile(File file) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(file));
         String str = null;
-        while((str=br.readLine()) != null){
+        while ((str = br.readLine()) != null) {
             System.out.println(str);
         }
     }
+
     //读取ftp服务器指定文件内容并打印出来(编码格式为utf-8)
-    private  void ReadFtpfile(String filename) throws IOException {
-        ApplicationContext context=myBean.getContext();
-        Resource resource= context.getResource(filename);
-        InputStream inputStream=  resource.getInputStream();
+    private void ReadFtpfile(String filename) throws IOException {
+        ApplicationContext context = myBean.getContext();
+        Resource resource = context.getResource(filename);
+        InputStream inputStream = resource.getInputStream();
         InputStreamReader isr = new InputStreamReader(inputStream,
                 "UTF-8");
         BufferedReader read = new BufferedReader(isr);
         // BufferedReader br = new BufferedReader(new FileReader(localFile));
         String str;
-        while((str=read.readLine()) != null){
+        while ((str = read.readLine()) != null) {
             System.out.println(str);
         }
     }
+
     //讲ftp中文件内容保存到本地文件中
-    private  void saveLocalFile(FTPClient ftp ,FTPFile ftpFile,String localpath) throws IOException {
+    private void saveLocalFile(FTPClient ftp, FTPFile ftpFile, String localpath) throws IOException {
         //File localFile = new File("E:\\ftp\\dir" + "/" + ftpFile.getName());
         File localFile = new File(localpath + "/" + ftpFile.getName());
         OutputStream is = new FileOutputStream(localFile);
         ftp.retrieveFile(ftpFile.getName(), is);
         is.close();
     }
+
     //读取本地文件内容并打印出来
-    private  void  readFileBycode(File localFile) throws IOException {
+    private void readFileBycode(File localFile) throws IOException {
         InputStreamReader isr = new InputStreamReader(new FileInputStream(localFile),
                 "UTF-8");
         BufferedReader read = new BufferedReader(isr);
         // BufferedReader br = new BufferedReader(new FileReader(localFile));
         String str;
-        while((str=read.readLine()) != null){
+        while ((str = read.readLine()) != null) {
             System.out.println(str);
         }
     }

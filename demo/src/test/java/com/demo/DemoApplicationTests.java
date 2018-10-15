@@ -15,6 +15,7 @@ public class DemoApplicationTests {
     //注入StringEncryptor
     @Autowired
     StringEncryptor encryptor;
+
     @Test
     public void contextLoads() throws NoSuchFieldException, IllegalAccessException {
         String username = encryptor.encrypt("root");
@@ -23,21 +24,23 @@ public class DemoApplicationTests {
         String password = encryptor.encrypt("123456");
 
         System.out.println(password);
-        String pwd=encryptor.decrypt(password);
+        String pwd = encryptor.decrypt(password);
         System.out.println(pwd);
-        String uname=encryptor.decrypt(username);
+        String uname = encryptor.decrypt(username);
         System.out.println(uname);
-        ReadOnlyClass readOnlyClass=new ReadOnlyClass();
-        Class<?>c=ReadOnlyClass.class;
-        Field field=c.getDeclaredField("age");
+        ReadOnlyClass readOnlyClass = new ReadOnlyClass();
+        Class<?> c = ReadOnlyClass.class;
+        Field field = c.getDeclaredField("age");
         field.setAccessible(true);
-        field.set(readOnlyClass,12);
+        field.set(readOnlyClass, 12);
         System.out.println(readOnlyClass.getAge());
     }
 
 }
+
 class ReadOnlyClass {
-    private Integer age =20;
+    private Integer age = 20;
+
     public Integer getAge() {
         return age;
     }

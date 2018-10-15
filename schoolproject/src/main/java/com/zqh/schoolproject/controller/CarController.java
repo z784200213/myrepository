@@ -9,11 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/Car")
-public class CarController{
+public class CarController {
     @Autowired
     ICarService carService;
+
     @RequestMapping("/Query/id={id}")
-    public Car Query(@PathVariable  int id){
+    public Car Query(@PathVariable int id) {
         return carService.Query(id);
     }
 }

@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @ControllerAdvice
 public class ExceptionHandle {
 
-    private final static Logger logger= LoggerFactory.getLogger(ExceptionHandle.class);
+    private final static Logger logger = LoggerFactory.getLogger(ExceptionHandle.class);
+
     @ResponseBody
     @ExceptionHandler(value = Exception.class)
-    public DataResult handle(Exception e){
-        DataResult dataResult=new DataResult();
+    public DataResult handle(Exception e) {
+        DataResult dataResult = new DataResult();
         logger.error(e.toString());
-        return   dataResult.setExceptionResponse(e.toString());
+        return dataResult.setExceptionResponse(e.toString());
        /* if(e instanceof TGException){
             TGException tgException=(TGException) e;
             return ResultUtil.error(tgException.getCode(),tgException.toString());

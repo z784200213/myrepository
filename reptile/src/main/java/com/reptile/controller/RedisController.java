@@ -35,15 +35,16 @@ public class RedisController {
         userInfor = JsonUtil.convertString2Obj(s, UserInfor.class);
         String s1 = s;
     }
+
     @RequestMapping("/setObjects")
     public void setObjects() throws JsonProcessingException {
-        List<UserInfor>userInfors=new ArrayList<UserInfor>();
+        List<UserInfor> userInfors = new ArrayList<UserInfor>();
         UserInfor userInfor = new UserInfor();
         userInfor.setName("李白");
         userInfor.setId(12);
         userInfor.setAge(12);
         userInfors.add(userInfor);
-        UserInfor userInfor1=new UserInfor();
+        UserInfor userInfor1 = new UserInfor();
         userInfor1.setAge(13);
         userInfor1.setId(13);
         userInfor1.setName("王维");
@@ -51,6 +52,7 @@ public class RedisController {
         String s = JsonUtil.convertObj2String(userInfors);
         stringRedisTemplate.opsForValue().set("shiren", s);
     }
+
     @RequestMapping("/getObjects")
     public UserInfor[] getObjects() throws IOException {
         String s = stringRedisTemplate.opsForValue().get("shiren");
@@ -58,6 +60,6 @@ public class RedisController {
         UserInfor[] userInfors = JsonUtil.convertString2list(s, UserInfor[].class);
 
         String s1 = s;
-       return userInfors;
+        return userInfors;
     }
 }

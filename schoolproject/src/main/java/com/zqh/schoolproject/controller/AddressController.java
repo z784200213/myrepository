@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class AddressController {
     @Autowired
     IAddressService addressService;
+
     @RequestMapping("/Query/id={id}")
-    public Address Query(@PathVariable int id){
+    public Address Query(@PathVariable int id) {
         return addressService.Query(id);
     }
 }

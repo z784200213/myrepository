@@ -29,36 +29,37 @@ public class LoginController {
     public String login() {
         return "login";
     }
+
     @PostMapping("/loginPost")
     @ResponseBody
     public Map<String, Object> loginPost(String account, String password, HttpSession session, HttpServletResponse response,
                                          HttpServletRequest request) {
 
         Map<String, Object> map = new HashMap<>();
-        Enumeration<String> strings=  request.getHeaderNames();
+        Enumeration<String> strings = request.getHeaderNames();
         if (!"123456".equals(password)) {
             map.put("success", false);
             map.put("message", "密码错误");
 
-            map.put("issuccess",false);
+            map.put("issuccess", false);
             return map;
         }
-        Cookie cookie=new Cookie("Loingtoken","logintoken");
+        Cookie cookie = new Cookie("Loingtoken", "logintoken");
         response.addCookie(cookie);
-        long exprisedtime = System.currentTimeMillis()+1000*60;
-        CacheManager.putCache("token",new Cache("token",account,exprisedtime,true));
+        long exprisedtime = System.currentTimeMillis() + 1000 * 60;
+        CacheManager.putCache("token", new Cache("token", account, exprisedtime, true));
         // 设置session
         session.setAttribute("Testaccount", account);
-        session.setAttribute("loginName",account);
+        session.setAttribute("loginName", account);
         map.put("success", true);
         map.put("message", "登录成功");
-        map.put("issuccess",true);
-        Date date=new Date();
+        map.put("issuccess", true);
+        Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd HH:mm:ss");
-        response.setHeader("token",account);
+        response.setHeader("token", account);
         System.out.println("目标方法 loginPost");
-        Object object=null;
-       object.toString();
+        Object object = null;
+        object.toString();
         return map;
     }
 }

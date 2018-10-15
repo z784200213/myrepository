@@ -5,11 +5,12 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import javax.validation.constraints.Null;
 import java.io.Serializable;
 import java.util.List;
+
 //@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class UserInfo implements Serializable {
-  public int  id;
-   public String nick_name;
-   public int address_id;
+    public int id;
+    public String nick_name;
+    public int address_id;
 
     public List<Car> getCars() {
         return cars;
@@ -19,7 +20,7 @@ public class UserInfo implements Serializable {
         this.cars = cars;
     }
 
-    public List<Car>cars;
+    public List<Car> cars;
 
     public Address getAddress() {
         return address;

@@ -11,6 +11,7 @@ import javax.servlet.Filter;
 public class LoginfilterConfig {
     /**
      * 配置过滤器
+     *
      * @return
      */
     @Bean
@@ -26,6 +27,7 @@ public class LoginfilterConfig {
 
     /**
      * 创建一个bean
+     *
      * @return
      */
     @Bean(name = "loginfilter")

@@ -18,6 +18,7 @@ public class Loginfilter implements Filter {
      * 封装，不需要过滤的list列表
      */
     protected static List<Pattern> patterns = new ArrayList<Pattern>();
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         patterns.add(Pattern.compile("login/loginin"));
@@ -40,13 +41,13 @@ public class Loginfilter implements Filter {
         if (url.startsWith("/") && url.length() > 1) {
             url = url.substring(1);
         }
-        if(isInclude(url)){
-            filterChain.doFilter(servletRequest,servletResponse);
+        if (isInclude(url)) {
+            filterChain.doFilter(servletRequest, servletResponse);
             return;
-        }else{
+        } else {
             HttpSession session = httpRequest.getSession();
-            Boolean sessionCheck=sessionCheck(session);
-            if (sessionCheck){
+            Boolean sessionCheck = sessionCheck(session);
+            if (sessionCheck) {
                 // session存在
                 filterChain.doFilter(httpRequest, httpResponse);
                 return;
@@ -57,8 +58,10 @@ public class Loginfilter implements Filter {
             }
         }
     }
+
     /**
      * 是否需要过滤
+     *
      * @param url
      * @return
      */
@@ -71,27 +74,31 @@ public class Loginfilter implements Filter {
         }
         return false;
     }
+
     @Override
     public void destroy() {
 
     }
-//session检查
-    private  boolean sessionCheck( HttpSession session){
-        Object obj=   session.getAttribute("logintoken");
-        if(obj!=null){
-            return  true;
-        }
-        return  false;
-    }
-    //请求头检查
-    private  boolean headerCheck(HttpServletRequest request){
-        Enumeration<String>  headerNames=  request.getHeaderNames();
 
-        return  false;
+    //session检查
+    private boolean sessionCheck(HttpSession session) {
+        Object obj = session.getAttribute("logintoken");
+        if (obj != null) {
+            return true;
+        }
+        return false;
     }
+
+    //请求头检查
+    private boolean headerCheck(HttpServletRequest request) {
+        Enumeration<String> headerNames = request.getHeaderNames();
+
+        return false;
+    }
+
     //cookie检查
-    private  boolean cookieCheck(HttpServletRequest request){
-        Cookie[]cookies=  request.getCookies();
-        return  false;
+    private boolean cookieCheck(HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        return false;
     }
 }

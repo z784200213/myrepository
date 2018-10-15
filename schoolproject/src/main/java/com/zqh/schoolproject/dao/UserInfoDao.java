@@ -3,6 +3,7 @@ package com.zqh.schoolproject.dao;
 import com.zqh.schoolproject.entity.UserInfo;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
+
 @Repository
 
 public interface UserInfoDao {

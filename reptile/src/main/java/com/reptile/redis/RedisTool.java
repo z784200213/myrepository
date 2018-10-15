@@ -94,7 +94,7 @@ public class RedisTool {
             operations.set(key, value);
             result = true;
         } catch (Exception e) {
-           throw  e;// e.printStackTrace();
+            throw e;// e.printStackTrace();
         }
         return result;
     }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 public interface IUserInforDao {
     @Select("Select * from user where id=#{id}")
     UserInfor query(int id);
+
     @Insert("INSERT INTO user (id, name, age)VALUES(#{id},#{name}, " +
             "#{age})")
     int AddUserInfo(UserInfor info);

@@ -16,17 +16,17 @@ public class AspectTrancation {
      * 用注解
      */
     @Pointcut("@annotation(com.reptile.aspect.TrancationAno)")
-    public void executeAnnotation(){
+    public void executeAnnotation() {
     }
 
     @Before("executeAnnotation()")
-    public void beforeAdviceAnnotation(){
+    public void beforeAdviceAnnotation() {
         System.out.println("- - - - - 前置通知 annotation - - - - -");
     }
 
     @Around("@annotation(annoTest)")
-    public Object aroundAnnotation(ProceedingJoinPoint proceedingJoinPoint, TrancationAno annoTest) throws Throwable  {
-            Object obj=     proceedingJoinPoint.proceed();
-            return obj;
+    public Object aroundAnnotation(ProceedingJoinPoint proceedingJoinPoint, TrancationAno annoTest) throws Throwable {
+        Object obj = proceedingJoinPoint.proceed();
+        return obj;
     }
 }

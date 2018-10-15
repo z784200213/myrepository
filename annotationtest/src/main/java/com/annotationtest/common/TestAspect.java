@@ -19,30 +19,33 @@ import java.sql.SQLException;
 public class TestAspect {
     @Autowired
     DataSource dataSource;
+
     /**
      * 切入点
      * 用注解
      */
     @Pointcut("@annotation(com.annotationtest.common.TestAnno)")
-    public void executeAnnotation(){
+    public void executeAnnotation() {
     }
+
     @Before("executeAnnotation()")
-    public void beforeAdviceAnnotation(){
+    public void beforeAdviceAnnotation() {
         System.out.println("- - - - - 前置通知 annotation - - - - -");
     }
+
     @Around("@annotation(webDesc)")
 
     public Object aroundAnnotation(ProceedingJoinPoint proceedingJoinPoint, TestAnno webDesc) throws SQLException {
         try {
-            Object obj=     proceedingJoinPoint.proceed();
+            Object obj = proceedingJoinPoint.proceed();
             return obj;
         } catch (Throwable throwable) {
          /*   DataResult<String> bean=new DataResult<String>("错误");
             bean.setErrorResponse(throwable.toString());
             return  bean;*/
-            throw  new RuntimeException();
+            throw new RuntimeException();
 
-        }finally {
+        } finally {
           /*      DataResult<String> bean=new DataResult<String>("错误");
         bean.setErrorResponse("错误");
         return  bean;*/
@@ -50,14 +53,14 @@ public class TestAspect {
 
 
     }
+
     /**
      * 后置通知
-     *
      *
      * @param joinPoint
      */
     @After("executeAnnotation()")
     public void after(JoinPoint joinPoint) {
-      String s="123";
+        String s = "123";
     }
 }

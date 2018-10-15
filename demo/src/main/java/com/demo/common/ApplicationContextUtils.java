@@ -9,10 +9,11 @@ import org.springframework.stereotype.Component;
 @Component
 @EnableAutoConfiguration
 public class ApplicationContextUtils implements ApplicationContextAware {
-    public static ApplicationContext applicationContext=null;//可写成单利模式，这里为了方便
+    public static ApplicationContext applicationContext = null;//可写成单利模式，这里为了方便
+
     @Override
     public void setApplicationContext(ApplicationContext arg0) throws BeansException {
-        applicationContext=arg0;
+        applicationContext = arg0;
         System.out.println("设置ApplicationContext成功！");
     }
 }

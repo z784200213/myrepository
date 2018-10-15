@@ -2,7 +2,7 @@ package com.demo.entity;
 
 public class Address {
     public int id;
-   public String province;
+    public String province;
 
     public int getId() {
         return id;

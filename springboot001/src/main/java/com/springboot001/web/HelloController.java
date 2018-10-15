@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.annotation.Resource;
+
 @Controller
 public class HelloController {
     @RequestMapping("/hello")
@@ -21,19 +23,22 @@ public class HelloController {
     public String json() throws MyException {
         throw new MyException("发生错误2");
     }
-@Autowired
-JavaMailSender jms;
+
+    @Autowired
+    JavaMailSender jms;
     @Autowired
     MailEntity entity;
     @Autowired
     Mail mail;
+
     @RequestMapping("/")
     public String index(ModelMap map) {
         map.addAttribute("host", "http://blog.didispace.com");
         testSend2();
         return "test";
     }
-    private  void TestSend1(){
+
+    private void TestSend1() {
         //建立邮件消息
         SimpleMailMessage mainMessage = new SimpleMailMessage();
         //发送者
@@ -47,7 +52,8 @@ JavaMailSender jms;
 
         jms.send(mainMessage);
     }
-    private  void testSend2(){
-        mail.sendMail("测试","163信息发送到qq邮箱中","784200213@qq.com");
+
+    private void testSend2() {
+        mail.sendMail("测试", "163信息发送到qq邮箱中", "784200213@qq.com");
     }
 }

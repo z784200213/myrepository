@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 public class UserInforService implements IUserInforService {
     @Autowired
     UserInfoDao userInfoDao;
+
     @Override
     public UserInfo Query(int id) {
         return userInfoDao.Query(id);
@@ -22,6 +23,6 @@ public class UserInforService implements IUserInforService {
 
     @Override
     public int AddUserInfor(UserInfo userInfo) {
-        return  userInfoDao.AddUserInfo(userInfo);
+        return userInfoDao.AddUserInfo(userInfo);
     }
 }

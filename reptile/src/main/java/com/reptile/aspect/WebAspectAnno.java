@@ -17,24 +17,26 @@ public class WebAspectAnno {
      * 用注解
      */
     @Pointcut("@annotation(com.reptile.aspect.WebDesc)")
-    public void executeAnnotation(){
+    public void executeAnnotation() {
     }
+
     @Before("executeAnnotation()")
-    public void beforeAdviceAnnotation(){
+    public void beforeAdviceAnnotation() {
         System.out.println("- - - - - 前置通知 annotation - - - - -");
     }
+
     @Around("@annotation(webDesc)")
-    public Object aroundAnnotation(ProceedingJoinPoint proceedingJoinPoint, WebDesc webDesc){
+    public Object aroundAnnotation(ProceedingJoinPoint proceedingJoinPoint, WebDesc webDesc) {
         System.out.println("- - - - - 环绕通知 annotation - - - -");
         //获取注解里的值
         System.out.println("注解的值:" + webDesc.describe());
         try {//obj之前可以写目标方法执行前的逻辑
-           Object bean = proceedingJoinPoint.proceed();//调用执行目标方法
+            Object bean = proceedingJoinPoint.proceed();//调用执行目标方法
             System.out.println("- - - - - 环绕通知 annotation end - - - -");
             return bean;
         } catch (Throwable throwable) {
             throwable.printStackTrace();
-            TransactionStatus transactionStatus= TransactionAspectSupport.currentTransactionStatus();
+            TransactionStatus transactionStatus = TransactionAspectSupport.currentTransactionStatus();
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
         }
         return null;
