@@ -1,0 +1,40 @@
+package com.springboot003.entity;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ConfigurationProperties(prefix = "spring.datasource")
+public class DataSource {
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    private String url;
+    private  String username;
+    private  String password;
+   /* spring.datasource.url=jdbc:mysql://localhost:3306/bookstore?useUnicode=true&characterEncoding=utf8
+    spring.datasource.username= root
+    spring.datasource.password= 123456
+    spring.datasource.driver-class-name=com.mysql.jdbc.Driver*/
+}
